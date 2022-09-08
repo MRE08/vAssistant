@@ -9,6 +9,8 @@ import pyttsx3
 #Import Whatkit module
 import pywhatkit
 
+#import Jokes
+import pyjokes
 #Import Time Module
 import datetime
 #creating a listener
@@ -56,7 +58,6 @@ try:
     print('Welcome' , userName)
     #Using a try function incase the code fails
     #Ask for a command from user
-    engineSpeak('How can I be of help to you?')
     #listening()
 
     #Telling the listener to listen0
@@ -74,6 +75,7 @@ try:
             response()
 
     def response():
+        engineSpeak('How can I be of help to you?')
         listening()
         command = listener.recognize_google(voice)
         command = command.replace('can you', '')
@@ -96,10 +98,13 @@ try:
         elif 'go on a date' in command:
             engineSpeak('Oh. I\'m sorry. I do not think I will have time for that')
             print('Oh. I\'m sorry. I do not think I will have time for that')
+        elif 'joke' in command:
+            engineSpeak(pyjokes.get_joke())
         elif 'say my name' in command:
             global sayName
             sayName = 'That is easy. Your name is','',userName
             engineSpeak(sayName)
+        
         else:
             engineSpeak('Sorry. I am too stupid to carry out that operation')
         secTrial()
